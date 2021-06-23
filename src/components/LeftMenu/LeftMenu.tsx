@@ -1,6 +1,5 @@
 import React, { FC } from 'react';
 import ReactDOM from 'react-dom';
-import { Reset } from 'styled-reset';
 import styled from 'styled-components';
 
 import { UserCard } from './UserCard/UserCard';

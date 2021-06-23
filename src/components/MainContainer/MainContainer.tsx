@@ -1,23 +1,20 @@
 import React, { FC } from 'react';
 import styled from 'styled-components';
+import { Work } from '../Work/Work';
 
 import { Publications } from './Publications/Publications';
+import { WorkspacesSlider } from './WorkspacesSlider/WorkspacesSlider';
 
-const MainContainerWrapper = styled.div`    
-    overflow-y: auto;
-    width: 100%;
-    padding: 0.75rem 0.5rem 0;
-    
-`;
+const MainContainerWrapper = styled.div``;
 
 
 
 export const MainContainer: FC = () => {
     return(
         <MainContainerWrapper>
-            <Publications/>
-            {/* <WorkspacesSlider/>
-            <Work/> */}
+            <Publications />
+            <WorkspacesSlider/>
+            <Work/>
         </MainContainerWrapper>
     );
 

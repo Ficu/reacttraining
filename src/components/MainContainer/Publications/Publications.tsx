@@ -137,10 +137,12 @@ export const Publications: FC = () => {
     }));
 
 
-    function getPosts(postListe: ISinglePost[], usersList: ISingleUser[], photoList: ISinglePhoto[]) {
+    function getPosts(postList: ISinglePost[], usersList: ISingleUser[], photoList: ISinglePhoto[]) {
         
-        const posts: ISinglePost[] = postListe.filter(x => x.userId == 1).slice(1, 4);
-        if(postListe.length > 0 && usersList.length > 0 && photoList.length > 0){
+        const posts: ISinglePost[] = postList.filter(x => x.userId === 1).slice(1, 4);
+        
+        if(postList.length > 0 && usersList.length > 0 && photoList.length > 0){
+        
         return (posts.length > 0 ? posts.map((post, i) =>
             <ArticleWrapper>
             <ArticleImg src={photoList[post.id].thumbnailUrl} alt=""/>
@@ -149,12 +151,13 @@ export const Publications: FC = () => {
                 <UserSign>
                     <div>2020-05-08</div>
                     <UserSignLink to="/Profile">
-                        <img src={photoList[photoList.findIndex(x => x.id == 1)].url} alt="" />
-                        <p>{usersList[post.userId-1].name}</p>
+                        <img src={photoList[photoList.findIndex(x => x.id === postList[i].userId)].url} alt="" />
+                        <p>{usersList[usersList.findIndex(x => x.id === postList[i].userId)].name}</p>
                     </UserSignLink>
                 </UserSign>
             </div>
             </ArticleWrapper>) : <></>);
+
         }
     }
 
@@ -165,9 +168,7 @@ export const Publications: FC = () => {
 
     return(
         <PublicationWrapper>
-                
-
-            
+         
             <HighlightArticle>
                 <HighlightArticleImg src="https://via.placeholder.com/600/92c952" alt="" />
                 <HighlightDiv>
@@ -186,48 +187,6 @@ export const Publications: FC = () => {
 
             <Articles>
                 <ArticlesTitle>Latest publications</ArticlesTitle>
-
-                {/* <ArticleWrapper>
-                    <ArticleImg src="https://via.placeholder.com/600/92c952" alt=""/>
-                    <div>
-                        <ArticleTitle>Qui est esse</ArticleTitle>
-                        <UserSign>
-                            <div>2020-05-08</div>
-                            <UserSignLink to="">
-                                <img src="https://via.placeholder.com/150/92c952" alt="" />
-                                <p>Jan Kowalski</p>
-                            </UserSignLink>
-                        </UserSign>
-                    </div>
-                </ArticleWrapper>
-
-                <ArticleWrapper>
-                    <ArticleImg src="https://via.placeholder.com/600/92c952" alt=""/>
-                    <div>
-                        <ArticleTitle>Qui est esse</ArticleTitle>
-                        <UserSign>
-                            <div>2020-05-08</div>
-                            <UserSignLink to="">
-                                <img src="https://via.placeholder.com/150/92c952" alt="" />
-                                <p>Jan Kowalski</p>
-                            </UserSignLink>
-                        </UserSign>
-                    </div>
-                </ArticleWrapper>
-
-                <ArticleWrapper>
-                    <ArticleImg src="https://via.placeholder.com/600/92c952" alt=""/>
-                    <div>
-                        <ArticleTitle>Qui est esse</ArticleTitle>
-                        <UserSign>
-                            <div>2020-05-08</div>
-                            <UserSignLink to="">
-                                <img src="https://via.placeholder.com/150/92c952" alt="" />
-                                <p>Jan Kowalski</p>
-                            </UserSignLink>
-                        </UserSign>
-                    </div>
-                </ArticleWrapper> */}
                 {getPosts(postList, usersList, photoList)}
 
             <Link to="/publications">See more publications...</Link>

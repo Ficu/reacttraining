@@ -19,6 +19,8 @@ import { TopBar } from '../TopBar/TopBar';
 import { LeftMenu } from '../LeftMenu/LeftMenu';
 import { Colors } from '../../styledHelpers/Colors';
 import { NotFound } from './NotFound';
+import { Entities } from '../Entities/Entities';
+import { Workspace } from '../Workspace/Workspace';
 
 
 const Wrapper = styled.div`
@@ -38,10 +40,15 @@ const AppWraper = styled.div`
   flex: 1 1;
   width: 100%;
   max-width: 100rem;
-  //height: 100%;
   min-height: 0;
   margin: auto;
 `;
+
+const MainWrapper = styled.div`
+  width: 100%;
+  padding: 0.75rem 0.5rem 0;
+`;
+
 
 type GetComments = ReturnType<typeof getComments>
 type GetPhotos = ReturnType<typeof getPhotos>
@@ -64,15 +71,20 @@ const MainPage: FC = () => {
         <TopBar />
         <AppWraper>
           <LeftMenu />
+          <MainWrapper>
           <Switch>
             <Route path="/entities">
-              <div></div>
+              <Entities />
+            </Route>
+            <Route path="/workspace">
+              <Workspace />
             </Route>
             <Route exact path="/">
               <MainContainer />
             </Route>
             <Route component={NotFound} />
           </Switch>
+          </MainWrapper>
         </AppWraper>
       </Wrapper> 
     </Router>
