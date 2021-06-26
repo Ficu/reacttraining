@@ -9,6 +9,8 @@ import { IPostReducer } from '../../reducers/postsReducers';
 import { IUsersReducer } from '../../reducers/usersReducers';
 import { Colors } from '../../styledHelpers/Colors';
 
+import ReactPaginate from 'react-paginate'; 
+
 
 const WorkWrapper = styled.div``;
 const WorkWrapperTitle = styled.div`
@@ -17,7 +19,27 @@ const WorkWrapperTitle = styled.div`
     margin: 0.7rem 0;
 `;
 
-const WorkContainer = styled.div``;
+const WorkContainer = styled.div`
+    .pagination {
+        display: flex;
+        justify-content: space-around;
+        background-color: white;
+        padding: 15px;
+        margin: 0.9rem 0.5rem;
+        li {
+            color: ${Colors.fontColor};
+            padding: 10px;
+            
+            &:hover {
+                cursor: pointer;
+                background-color: #f1f1f1;
+            }
+            &.active {
+                background-color: #f1f1f1;
+            }
+        }
+    }
+`;
 const SingleWork = styled.div`
     background-color: white;
     padding: 0.7rem;
@@ -65,22 +87,28 @@ export const Work: FC = () => {
     }));
 
     const getUserName = (postId: number) => {
-        let post: number = postList[postList.findIndex(x => x.id == postId)].userId;
+        let post: number = postList[postList.findIndex(x => x.id == postId)]?.userId;
 
-        let userId: string = usersList[usersList.findIndex(x => x.id == post)].name;
+        let userId: string = usersList[usersList.findIndex(x => x.id == post)]?.name;
         
         return userId;
     }
 
-    return(
-        <WorkWrapper>
-            <WorkWrapperTitle>
-                <h2>Resume your work</h2>
-            </WorkWrapperTitle>
+    const [currentPage, setCurrentPage] = useState(0);
+    const [perPage, setPerPage] = useState(10);
 
-            <WorkContainer>
+    const handlePageClick = (e:any) => {
+        const selectedPage = e.selected;
+        setCurrentPage(selectedPage + 1);
+    };
 
-            { commentList.map((x: ISingleComment) => 
+    const pageCount = Math.ceil(commentList.length / perPage);
+
+    const offset = currentPage * perPage;
+
+    const currentPageData = commentList
+    .slice(offset, offset + 10)
+    .map((x: ISingleComment) => 
                 <SingleWork>
                     <WorkTitle>
                         <h3>{x.name}</h3>
@@ -97,8 +125,40 @@ export const Work: FC = () => {
                         </WorkTime>
                     </WorkInfo>
                 </SingleWork> 
-                )};
+                );
 
+    return(
+        <WorkWrapper>
+            <WorkWrapperTitle>
+                <h2>Resume your work</h2>
+            </WorkWrapperTitle>
+
+            <WorkContainer>
+            {currentPageData}
+
+                <ReactPaginate
+                    previousLabel={"Poprzednia strona"}
+                    nextLabel={"Następna strona"}
+                    breakLabel={"..."}
+                    breakClassName={"break-me"}
+                    pageCount={pageCount}
+                    marginPagesDisplayed={2}
+                    pageRangeDisplayed={5}
+                    onPageChange={handlePageClick}
+                    containerClassName={"pagination"}
+                    activeClassName={"active"}/>
+        {/* <ReactPaginate
+          previousLabel={'previous'}
+          nextLabel={'next'}
+          breakLabel={'...'}
+          breakClassName={'break-me'}
+          pageCount={commentList.length/10}
+          marginPagesDisplayed={2}
+          pageRangeDisplayed={5}
+        //   onPageChange={this.handlePageClick}
+          containerClassName={'pagination'}
+          activeClassName={'active'}
+        /> */}
 
             </WorkContainer>
 

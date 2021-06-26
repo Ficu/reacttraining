@@ -2,8 +2,8 @@ import React, { FC } from 'react';
 import ReactDOM from 'react-dom';
 import styled from 'styled-components';
 
-//import '../../../styles/slick-carousel/slick/slick.css';
-//import '../../../styles/slick-carousel/slick/slick-theme.css';
+import '../../../styles/slick-carousel/slick/slick.css';
+import '../../../styles/slick-carousel/slick/slick-theme.css';
 
 import Slider from 'react-slick';
 import { Colors } from '../../../styledHelpers/Colors';
@@ -11,6 +11,7 @@ import { Link } from 'react-router-dom';
 
 const WorkspaceSliderWrapper = styled.div`
     margin:3rem 0;
+    
 `; 
 
 const SliderTitle = styled.div`
@@ -28,6 +29,9 @@ const Workspace = styled.div`
     background-color: white;
     padding: 1rem;
     border-radius: 5px;
+    margin: 0px 10px;
+    display: flex;
+    flex-direction: column;
 
     &:hover {
         background-color: #e5e8f3;
@@ -51,14 +55,22 @@ const UpdateTime = styled.div`
 
 export const WorkspacesSlider: FC = () => {
 
+    const settings = {
+        dots: false,
+        arrows: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 3,
+        slidesToScroll: 1
+      };
+
     return(
         
         <WorkspaceSliderWrapper>
             <SliderTitle>
                 <h2>Workspaces</h2>
             </SliderTitle>
-
-            <SliderContainer>
+            <Slider {...settings}>
                 <Link to="/">
                     <Workspace>
                         <WorkspaceImage src="https://via.placeholder.com/300x150/f8f8f8" />
@@ -94,7 +106,31 @@ export const WorkspacesSlider: FC = () => {
                         </UpdateTime>
                     </Workspace>
                 </Link>
-            </SliderContainer>
+
+                <Link to="/">
+                    <Workspace>
+                        <WorkspaceImage src="https://via.placeholder.com/300x150/f8f8f8" />
+                        <WorkspaceTitle>
+                            <h3>Client Contract</h3>
+                        </WorkspaceTitle>
+                        <UpdateTime>
+                            <p>Last update 2 days ago </p>
+                        </UpdateTime>
+                    </Workspace>
+                </Link>
+
+                <Link to="/">
+                    <Workspace>
+                        <WorkspaceImage src="https://via.placeholder.com/300x150/f8f8f8" />
+                        <WorkspaceTitle>
+                            <h3>Client Contract</h3>
+                        </WorkspaceTitle>
+                        <UpdateTime>
+                            <p>Last update 2 days ago </p>
+                        </UpdateTime>
+                    </Workspace>
+                </Link>
+            </Slider>
         </WorkspaceSliderWrapper>
     );
 };

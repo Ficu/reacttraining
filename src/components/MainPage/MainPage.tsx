@@ -21,6 +21,7 @@ import { Colors } from '../../styledHelpers/Colors';
 import { NotFound } from './NotFound';
 import { Entities } from '../Entities/Entities';
 import { Workspace } from '../Workspace/Workspace';
+import { Profile } from '../Profile/Profile';
 
 
 const Wrapper = styled.div`
@@ -73,13 +74,16 @@ const MainPage: FC = () => {
           <LeftMenu />
           <MainWrapper>
           <Switch>
-            <Route path="/entities">
+            <Route path="/entities" exact>
               <Entities />
             </Route>
-            <Route path="/workspace">
+            <Route path="/workspace" exact>
               <Workspace />
             </Route>
-            <Route exact path="/">
+            <Route path="/profile" exact>
+              <Profile />
+            </Route>
+            <Route path="/" exact>
               <MainContainer />
             </Route>
             <Route component={NotFound} />

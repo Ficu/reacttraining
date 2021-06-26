@@ -23,7 +23,7 @@ const UserCardWrapper = styled.div`
     background: #fff;
     box-shadow: 0 2px 6px rgb(91 94 106 / 30%);
 `;
-const UserCardLink = styled.a`
+const UserCardLink = styled(Link)`
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -111,7 +111,7 @@ export const UserCard: FC = () => {
             
             <ParentUserCard>
                 <UserCardWrapper>
-                    <UserCardLink>
+                    <UserCardLink to="/Profile">
                         <UserPic src={photoList[0].url} />
                         <UserName>{usersList[0].name}</UserName>
                         <UserPosition>{usersList[0]?.company.name}</UserPosition>

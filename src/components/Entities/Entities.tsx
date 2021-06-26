@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { ChangeEvent, FC, useState } from 'react';
 import styled from 'styled-components';
 import { Colors } from '../../styledHelpers/Colors';
 import { useSelector } from 'react-redux';
@@ -7,6 +7,7 @@ import { IUsersReducer } from '../../reducers/usersReducers';
 import { ISinglePhotoReducer } from '../../reducers/photoReducers';
 import { ISinglePhoto } from '../../entities/ISinglePhoto';
 import { ISingleUser } from '../../entities/ISingleUser';
+import { Search, SearchBar } from '../common/Search/Search';
 
 
 
@@ -17,12 +18,17 @@ const EntitiesHeader = styled.div`
     justify-content: space-between;
 `;
 
-const EntTitle = styled.div``;
+const EntTitle = styled.div`
+    h2 {
+        color: ${Colors.fontColor};
+        padding: 10px;
+    }
+`;
 const EntSwitch = styled.div``;
 const EntContainer = styled.div`
     display: grid;
     width: 100%;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: ${(props: {displayType: number}) => props.displayType == 0 ? '1fr 1fr 1fr 1fr' : '1fr'};
     grid-gap: 0.6rem;
     margin-top: 15px;
 `;
@@ -56,8 +62,8 @@ const EntityAddress = styled.p`
 `;
 
 
-
 export const Entities: FC = () => {
+
 
     const { usersList } = useSelector<IState, IUsersReducer>(state => ({
         ...state.users
@@ -66,18 +72,31 @@ export const Entities: FC = () => {
     const { photoList } = useSelector<IState, ISinglePhotoReducer>(state => ({
         ...state.photo
     }));
-    
+
+    const [displayType, setDisplayType] = useState<number>(0);
+    const [inputText, setInputText] = useState<string>('');
+
+    const inputHandler = (e: ChangeEvent<HTMLInputElement>) => {
+        const text = e.target.value;
+        setInputText(text);
+    }
+    if(usersList.length > 0 && photoList.length > 0) {
     return(
         <EntitiesWrapper>
             <EntitiesHeader>
                 <EntTitle>
                     <h2>Entities</h2>
                 </EntTitle>
+                <SearchBar >
+                <input type="text" value={inputText} onChange={inputHandler} placeholder="Filter.." />
+                </SearchBar>
                 <EntSwitch>
-                    <div><p>Mosaic</p></div>
+                    <button onClick={() => setDisplayType(0)}> {displayType == 0 ? 'Mosaic' : 'Mosaic'}</button> 
+                    <button onClick={() => setDisplayType(1)}> {displayType == 1 ? 'List' : 'List'}</button>
                 </EntSwitch>
             </EntitiesHeader>
-            <EntContainer>
+            <EntContainer displayType={displayType} >
+
                 { usersList.map((x: ISingleUser) => 
                     <Entity>
                     <EntityImage src={photoList[photoList.findIndex(xe => xe.id === x.id)].url}></EntityImage>
@@ -87,7 +106,10 @@ export const Entities: FC = () => {
                     </EntityContainer>
                 </Entity>
                     )}
+
+                    
                 { usersList.map((x: ISingleUser) => 
+                
                     <Entity>
                     <EntityImage src={photoList[photoList.findIndex(xe => xe.id === x.id)].url}></EntityImage>
                     <EntityContainer>
@@ -109,4 +131,7 @@ export const Entities: FC = () => {
             </EntContainer>
         </EntitiesWrapper>
     );
+    } else {
+        return(<div>Nie załadowano</div>);
+    }
 }
