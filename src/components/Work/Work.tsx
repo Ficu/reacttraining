@@ -147,18 +147,6 @@ export const Work: FC = () => {
                     onPageChange={handlePageClick}
                     containerClassName={"pagination"}
                     activeClassName={"active"}/>
-        {/* <ReactPaginate
-          previousLabel={'previous'}
-          nextLabel={'next'}
-          breakLabel={'...'}
-          breakClassName={'break-me'}
-          pageCount={commentList.length/10}
-          marginPagesDisplayed={2}
-          pageRangeDisplayed={5}
-        //   onPageChange={this.handlePageClick}
-          containerClassName={'pagination'}
-          activeClassName={'active'}
-        /> */}
 
             </WorkContainer>
 
