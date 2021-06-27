@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import styled from 'styled-components';
 
@@ -8,6 +8,8 @@ import '../../../styles/slick-carousel/slick/slick-theme.css';
 import Slider from 'react-slick';
 import { Colors } from '../../../styledHelpers/Colors';
 import { Link } from 'react-router-dom';
+import { WorkspacesData } from '../../../data/WorkspacesData';
+import { IWorkspace } from '../../../entities/IWorkspaces';
 
 const WorkspaceSliderWrapper = styled.div`
     margin:3rem 0;
@@ -54,9 +56,8 @@ const UpdateTime = styled.div`
 `;
 
 export const WorkspacesSlider: FC = () => {
-
     const settings = {
-        dots: false,
+        dots: true,
         arrows: true,
         infinite: true,
         speed: 500,
@@ -67,59 +68,45 @@ export const WorkspacesSlider: FC = () => {
     return(
         
         <WorkspaceSliderWrapper>
-            <SliderTitle>
-                <h2>Workspaces</h2>
-            </SliderTitle>
             <Slider {...settings}>
-                <Link to="/">
+
+                <Link to="/workspace">
                     <Workspace>
                         <WorkspaceImage src="https://via.placeholder.com/300x150/f8f8f8" />
                         <WorkspaceTitle>
-                            <h3>Client Contract</h3>
+                            <h3>Supplier Contract</h3>
                         </WorkspaceTitle>
                         <UpdateTime>
-                            <p>Last update 2 days ago </p>
+                            <p>Last update 4 days ago </p>
                         </UpdateTime>
                     </Workspace>
                 </Link>
 
-                <Link to="/">
+                <Link to="/workspace">
                     <Workspace>
                         <WorkspaceImage src="https://via.placeholder.com/300x150/f8f8f8" />
                         <WorkspaceTitle>
-                            <h3>Client Contract</h3>
+                            <h3>Corporate</h3>
                         </WorkspaceTitle>
                         <UpdateTime>
-                            <p>Last update 2 days ago </p>
+                            <p>Last update 6 days ago </p>
                         </UpdateTime>
                     </Workspace>
                 </Link>
 
-                <Link to="/">
+                <Link to="/workspace">
                     <Workspace>
                         <WorkspaceImage src="https://via.placeholder.com/300x150/f8f8f8" />
                         <WorkspaceTitle>
-                            <h3>Client Contract</h3>
+                            <h3>Group name</h3>
                         </WorkspaceTitle>
                         <UpdateTime>
-                            <p>Last update 2 days ago </p>
+                            <p>Last update 8 days ago </p>
                         </UpdateTime>
                     </Workspace>
                 </Link>
 
-                <Link to="/">
-                    <Workspace>
-                        <WorkspaceImage src="https://via.placeholder.com/300x150/f8f8f8" />
-                        <WorkspaceTitle>
-                            <h3>Client Contract</h3>
-                        </WorkspaceTitle>
-                        <UpdateTime>
-                            <p>Last update 2 days ago </p>
-                        </UpdateTime>
-                    </Workspace>
-                </Link>
-
-                <Link to="/">
+                <Link to="/workspace">
                     <Workspace>
                         <WorkspaceImage src="https://via.placeholder.com/300x150/f8f8f8" />
                         <WorkspaceTitle>
@@ -131,6 +118,7 @@ export const WorkspacesSlider: FC = () => {
                     </Workspace>
                 </Link>
             </Slider>
+
         </WorkspaceSliderWrapper>
     );
 };
