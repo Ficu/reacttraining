@@ -1,7 +1,5 @@
-import React, { FC } from 'react';
-import ReactDOM from 'react-dom';
+import { FC } from 'react';
 import styled from 'styled-components';
-import { Reset } from 'styled-reset';
 
 interface ActionButtonProps {
     iconType: string;

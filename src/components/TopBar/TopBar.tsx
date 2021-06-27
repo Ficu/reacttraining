@@ -1,6 +1,5 @@
 import { FC } from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
 import useDropdown from 'react-dropdown-hook';
 
 import { Colors } from '../../styledHelpers/Colors';

@@ -1,5 +1,4 @@
-import React, { ChangeEvent, FC, useState } from 'react';
-import ReactDOM from 'react-dom';
+import { ChangeEvent, FC, useState } from 'react';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { ISingleComment } from '../../entities/ISingleComment';

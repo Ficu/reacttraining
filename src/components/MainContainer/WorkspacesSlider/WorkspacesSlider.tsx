@@ -1,5 +1,4 @@
-import React, { FC, useEffect } from 'react';
-import ReactDOM from 'react-dom';
+import { FC } from 'react';
 import styled from 'styled-components';
 
 import '../../../styles/slick-carousel/slick/slick.css';
@@ -8,24 +7,25 @@ import '../../../styles/slick-carousel/slick/slick-theme.css';
 import Slider from 'react-slick';
 import { Colors } from '../../../styledHelpers/Colors';
 import { Link } from 'react-router-dom';
-import { WorkspacesData } from '../../../data/WorkspacesData';
-import { IWorkspace } from '../../../entities/IWorkspaces';
+//not used
+//import { WorkspacesData } from '../../../data/WorkspacesData';
+//import { IWorkspace } from '../../../entities/IWorkspaces';
 
 const WorkspaceSliderWrapper = styled.div`
     margin:3rem 0;
     
 `; 
+// not used
+// const SliderTitle = styled.div`
+//     font-weight:bold;
+//     font-size: 1.5em;
+//     margin: 0.7rem 0;
+// `;
 
-const SliderTitle = styled.div`
-    font-weight:bold;
-    font-size: 1.5em;
-    margin: 0.7rem 0;
-`;
-
-const SliderContainer = styled.div`
-    display:flex;
-    justify-content: space-around;
-`;
+// const SliderContainer = styled.div`
+//     display:flex;
+//     justify-content: space-around;
+// `;
 
 const Workspace = styled.div`
     background-color: white;

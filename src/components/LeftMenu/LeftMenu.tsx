@@ -1,5 +1,4 @@
-import React, { FC } from 'react';
-import ReactDOM from 'react-dom';
+import { FC } from 'react';
 import styled from 'styled-components';
 
 import { UserCard } from './UserCard/UserCard';

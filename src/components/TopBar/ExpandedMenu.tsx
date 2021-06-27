@@ -2,7 +2,7 @@ import { FC, useState, ChangeEvent } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-import { Search, SearchBar } from '../common/Search/Search';
+import { SearchBar } from '../common/Search/Search';
 import { Colors } from '../../styledHelpers/Colors';
 import { useSelector } from 'react-redux';
 import { IState } from '../../reducers';

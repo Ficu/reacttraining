@@ -1,5 +1,4 @@
 import { FC } from 'react';
-import ReactDOM from 'react-dom';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
