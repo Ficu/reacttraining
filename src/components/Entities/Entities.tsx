@@ -5,9 +5,8 @@ import { useSelector } from 'react-redux';
 import { IState } from '../../reducers';
 import { IUsersReducer } from '../../reducers/usersReducers';
 import { ISinglePhotoReducer } from '../../reducers/photoReducers';
-import { ISinglePhoto } from '../../entities/ISinglePhoto';
 import { ISingleUser } from '../../entities/ISingleUser';
-import { Search, SearchBar } from '../common/Search/Search';
+import { SearchBar } from '../common/Search/Search';
 
 
 
@@ -91,42 +90,56 @@ export const Entities: FC = () => {
                 <input type="text" value={inputText} onChange={inputHandler} placeholder="Filter.." />
                 </SearchBar>
                 <EntSwitch>
-                    <button onClick={() => setDisplayType(0)}> {displayType == 0 ? 'Mosaic' : 'Mosaic'}</button> 
-                    <button onClick={() => setDisplayType(1)}> {displayType == 1 ? 'List' : 'List'}</button>
+                    <button onClick={() => setDisplayType(0)}> {displayType === 0 ? 'Mosaic' : 'Mosaic'}</button> 
+                    <button onClick={() => setDisplayType(1)}> {displayType === 1 ? 'List' : 'List'}</button>
                 </EntSwitch>
             </EntitiesHeader>
             <EntContainer displayType={displayType} >
-
-                { usersList.map((x: ISingleUser) => 
-                    <Entity>
+            
+            { usersList.map((x: ISingleUser) => 
+               <div>
+               {x.company.name.toLocaleLowerCase().includes(inputText.toLocaleLowerCase()) &&
+                <Entity>
+                   
                     <EntityImage src={photoList[photoList.findIndex(xe => xe.id === x.id)].url}></EntityImage>
                     <EntityContainer>
                         <EntityName>{x.company.name}</EntityName>
                         <EntityAddress>{x.address.street + " " + x.address.suite + ", " + x.address.city}</EntityAddress>
                     </EntityContainer>
                 </Entity>
-                    )}
-
+                }
+                </div>
+            )}
                     
-                { usersList.map((x: ISingleUser) => 
-                
-                    <Entity>
+            { usersList.map((x: ISingleUser) => 
+               <div>
+               {x.company.name.toLocaleLowerCase().includes(inputText.toLocaleLowerCase()) &&
+                <Entity>
+                   
                     <EntityImage src={photoList[photoList.findIndex(xe => xe.id === x.id)].url}></EntityImage>
                     <EntityContainer>
                         <EntityName>{x.company.name}</EntityName>
                         <EntityAddress>{x.address.street + " " + x.address.suite + ", " + x.address.city}</EntityAddress>
                     </EntityContainer>
                 </Entity>
-                    )}
-                { usersList.map((x: ISingleUser) => 
-                    <Entity>
+                }
+                </div>
+            )}
+
+            { usersList.map((x: ISingleUser) => 
+               <div>
+               {x.company.name.toLocaleLowerCase().includes(inputText.toLocaleLowerCase()) &&
+                <Entity>
+                   
                     <EntityImage src={photoList[photoList.findIndex(xe => xe.id === x.id)].url}></EntityImage>
                     <EntityContainer>
                         <EntityName>{x.company.name}</EntityName>
                         <EntityAddress>{x.address.street + " " + x.address.suite + ", " + x.address.city}</EntityAddress>
                     </EntityContainer>
                 </Entity>
-                    )}
+                }
+                </div>
+            )}
                 
             </EntContainer>
         </EntitiesWrapper>

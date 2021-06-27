@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { ChangeEvent, FC, useState } from 'react';
 import ReactDOM from 'react-dom';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
@@ -10,6 +10,7 @@ import { IUsersReducer } from '../../reducers/usersReducers';
 import { Colors } from '../../styledHelpers/Colors';
 
 import ReactPaginate from 'react-paginate'; 
+import { SearchBar } from '../common/Search/Search';
 
 
 const WorkWrapper = styled.div``;
@@ -70,6 +71,11 @@ const WorkUser = styled.div`
 `;
 const WorkTime = styled.div``;
 
+const SearchInput = styled.input`
+    width: 30%!important;
+    float: right;
+`;
+
 
 
 export const Work: FC = () => {
@@ -96,6 +102,7 @@ export const Work: FC = () => {
 
     const [currentPage, setCurrentPage] = useState(0);
     const [perPage, setPerPage] = useState(10);
+    const [inputText, setInputText] = useState<string>('');
 
     const handlePageClick = (e:any) => {
         const selectedPage = e.selected;
@@ -109,6 +116,9 @@ export const Work: FC = () => {
     const currentPageData = commentList
     .slice(offset, offset + 10)
     .map((x: ISingleComment) => 
+    <div>
+    {x.name.toLocaleLowerCase().includes(inputText.toLocaleLowerCase()) &&
+                    
                 <SingleWork>
                     <WorkTitle>
                         <h3>{x.name}</h3>
@@ -125,14 +135,22 @@ export const Work: FC = () => {
                         </WorkTime>
                     </WorkInfo>
                 </SingleWork> 
+                }
+        </div>
                 );
-
+    const inputHandler = (e: ChangeEvent<HTMLInputElement>) => {
+        const text = e.target.value;
+        setInputText(text);
+    }
     return(
         <WorkWrapper>
             <WorkWrapperTitle>
                 <h2>Resume your work</h2>
+                
             </WorkWrapperTitle>
-
+            <SearchBar>
+                <SearchInput type="text" value={inputText} onChange={inputHandler} placeholder="Filter.." />
+            </SearchBar>
             <WorkContainer>
             {currentPageData}
 

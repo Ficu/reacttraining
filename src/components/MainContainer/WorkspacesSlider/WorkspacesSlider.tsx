@@ -41,6 +41,8 @@ const Workspace = styled.div`
 `;
 
 const WorkspaceImage = styled.img`
+    height: 150px;
+    object-fit: cover;
 `;
 
 const WorkspaceTitle = styled.div`
@@ -72,7 +74,7 @@ export const WorkspacesSlider: FC = () => {
 
                 <Link to="/workspace">
                     <Workspace>
-                        <WorkspaceImage src="https://via.placeholder.com/300x150/f8f8f8" />
+                        <WorkspaceImage src="./assets/meeting.jpg" />
                         <WorkspaceTitle>
                             <h3>Supplier Contract</h3>
                         </WorkspaceTitle>
@@ -84,7 +86,7 @@ export const WorkspacesSlider: FC = () => {
 
                 <Link to="/workspace">
                     <Workspace>
-                        <WorkspaceImage src="https://via.placeholder.com/300x150/f8f8f8" />
+                        <WorkspaceImage src="./assets/meeting.jpg" />
                         <WorkspaceTitle>
                             <h3>Corporate</h3>
                         </WorkspaceTitle>
@@ -96,7 +98,7 @@ export const WorkspacesSlider: FC = () => {
 
                 <Link to="/workspace">
                     <Workspace>
-                        <WorkspaceImage src="https://via.placeholder.com/300x150/f8f8f8" />
+                        <WorkspaceImage src="./assets/meeting.jpg" />
                         <WorkspaceTitle>
                             <h3>Group name</h3>
                         </WorkspaceTitle>
@@ -108,7 +110,7 @@ export const WorkspacesSlider: FC = () => {
 
                 <Link to="/workspace">
                     <Workspace>
-                        <WorkspaceImage src="https://via.placeholder.com/300x150/f8f8f8" />
+                        <WorkspaceImage src="./assets/meeting.jpg" />
                         <WorkspaceTitle>
                             <h3>Client Contract</h3>
                         </WorkspaceTitle>
